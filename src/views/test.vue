@@ -14,7 +14,12 @@
 <script>
     export default {
         data() {
-            return {}
+            return {
+                info: {
+                    name: '高俊东',
+                    age: 18
+                }
+            }
         },
         mounted() {
             let ins = this.$methods.showLoading('加载中')
@@ -43,12 +48,12 @@
         },
         methods: {
             setStorage() {
-                this.$storage.setItem('name', {name: '高俊东', age: 18}, 10)
+                this.$storage.setItem('userinfo', this.info, 10)
+                this.$methods.showToast('设置成功')
             },
             getStorage() {
-                let obj = this.$storage.getItem('name')
-
-                alert(JSON.stringify(obj))
+                let info = this.$storage.getItem('userinfo')
+                this.$methods.showToast(JSON.stringify(info) || '数据为空')
             }
         }
     }

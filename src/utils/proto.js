@@ -33,6 +33,16 @@ class Proto {
             message: content
         })
     }
+
+    /**
+     * 重置data声明的数据
+     * @param key 重置的字段， 如果为空， 则全部重置
+     * @param self
+     */
+    resetData(key, self){
+        if(!key) return Object.assign(self.$data[key], self.$options.data()[key])
+        return Object.assign(self.$data, self.$options)
+    }
 }
 
 
