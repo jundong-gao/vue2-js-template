@@ -41,7 +41,7 @@ class Proto {
      */
     resetData(key, self){
         if(!key) return Object.assign(self.$data[key], self.$options.data()[key])
-        return Object.assign(self.$data, self.$options)
+        return Object.assign(self.$data, self.$options.data())
     }
 }
 
