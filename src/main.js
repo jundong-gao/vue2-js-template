@@ -5,12 +5,16 @@ import store from './store'
 import elementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import Storage from '@/utils/storage'
-import Proto from '@/utils/proto'
+import Ui from '@/utils/ui'
+import * as methods from '@/utils/methods'
+
 import http from '@/api/index'
 Vue.use(elementUI)
-Vue.prototype.$methods = new Proto(Vue)
-Vue.prototype.$storage = new Storage()
-Vue.prototype.$http = http
+window.$ui = Vue.prototype.$ui = new Ui(Vue)
+window.$storage = Vue.prototype.$storage = new Storage()
+window.$methods = Vue.prototype.$methods = methods
+window.$http = Vue.prototype.$http = http
+
 
 
 Vue.config.productionTip = false

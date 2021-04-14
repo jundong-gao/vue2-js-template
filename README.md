@@ -12,7 +12,7 @@
 │   ├── App.vue
 │   ├── api  // api层
 │   │   ├── gao.api.js
-│   │   ├── index.js
+│   │   ├── methods.js
 │   │   └── test.api.js
 │   ├── assets // 资源
 │   │   ├── logo.png
@@ -23,12 +23,12 @@
 │   │   └── server.js
 │   ├── main.js
 │   ├── router
-│   │   └── index.js
+│   │   └── methods.js
 │   ├── store
-│   │   └── index.js
+│   │   └── methods.js
 │   ├── utils // 工具类
-│   │   ├── index.js
-│   │   ├── proto.js
+│   │   ├── methods.js
+│   │   ├── ui.js
 │   │   └── storage.js
 │   └── views // 视图模板
 │       └── test.vue

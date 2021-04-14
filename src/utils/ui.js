@@ -7,7 +7,7 @@
 
 
 
-class Proto {
+class Ui {
     loadInstance
 
     constructor(vue) {
@@ -46,4 +46,4 @@ class Proto {
 }
 
 
-export default Proto
+export default Ui

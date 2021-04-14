@@ -22,16 +22,17 @@
             }
         },
         mounted() {
-            let ins = this.$methods.showLoading('加载中')
+            let ins = this.$ui.showLoading('加载中')
 
+            console.log('this.$methods.createUUID::::::::::::::::', this.$methods.createUUID())
 
             setTimeout(() => {
-                this.$methods.hideLoading()
+                this.$ui.hideLoading()
             },1000)
 
 
 
-            this.$http.test.test2({
+            $http.test.test2({
                 age: 18,
                 name:'张三'
             })
