@@ -8,10 +8,14 @@
 
 import axios from 'axios'
 import Vue from 'vue'
+import router from '@/router/index'
 
 let axiosInstance = axios.create({
-    timeout: 1000
+    timeout: 10000
 })
+
+const CancelToken = axios.CancelToken
+let source = CancelToken.source()
 
 
 /**
@@ -19,35 +23,41 @@ let axiosInstance = axios.create({
  */
 axiosInstance.interceptors.request.use(config => {
     return config;
-});
+})
 
 /**
  * axios响应拦截
  */
 axiosInstance.interceptors.response.use(config => {
-    const { data, status } = config
-    // if (!data || data.code !== 0) {
-    //     _errorHandle(config, data.code, true)
-    //     return Promise.reject(data)
-    // }
+    
 
-    // _errorHandle(data.code, 'asdasdasd')
+	/* 登录判断
+
+	if(没有登录){
+		source.cancel() // 取消其他正在进行的请求
+	    source = CancelToken.source() // 重新赋值给source
+		
+		router.replace('/login')		
+	}
+
+	*/
+
+
+	/* 错误判断
+
+	if(response.data.code !== 0) {
+        Vue.prototype.$methods.shwoToast(response.data.message, 'error')
+        return Promise.reject(response.data)
+    }
+
+    */
 
     return config
 }, err => {
-    let response = err.response
-    if (response) {
-        _errorHandle(response.status, response.statusText)
-    } else {
-        _errorHandle(500, '服务器无响应')
-    }
-    return Promise.reject(err)
+    if(axios.isCancel)  return new Promise(() => {})
+    return Promise.reject(error)
 })
 
-
-function _errorHandle (status, msg) {
-    Vue.prototype.$methods.showToast(msg)
-}
 
 
 
