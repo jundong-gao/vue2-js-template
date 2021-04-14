@@ -8,6 +8,13 @@
     <div style="height: 2000px;">
         <el-button type="primary" @click="setStorage">setStorage（10秒）</el-button>
         <el-button type="primary" @click="getStorage">getStorage</el-button>
+        <el-button type="primary" @click="resetData">resetData</el-button>
+        <el-input v-model.trim="info.name"></el-input>
+        <el-input v-model.trim="info.age"></el-input>
+        <el-input v-model.trim="info.company.code"></el-input>
+        <el-input v-model.trim="info2.address"></el-input>
+        {{info}}
+        {{info2}}
     </div>
 </template>
 
@@ -17,20 +24,18 @@
             return {
                 info: {
                     name: '高俊东',
-                    age: 18
+                    age: 18,
+                    company: {
+                        code: '123',
+                        phone: '123'
+                    }
+                },
+                info2: {
+                    address: '浙江杭州'
                 }
             }
         },
         mounted() {
-            let ins = this.$ui.showLoading('加载中')
-
-            console.log('this.$methods.createUUID::::::::::::::::', this.$methods.createUUID())
-
-            setTimeout(() => {
-                this.$ui.hideLoading()
-            },1000)
-
-
 
             $http.test.test2({
                 age: 18,
@@ -45,16 +50,18 @@
             this.$http.gao.gao2().then(res => {
                 console.log('gao2::::::::::::::::', res)
             })
-
         },
         methods: {
+            resetData() {
+                this.$ui.resetData('info.company.code', this)
+            },
             setStorage() {
                 this.$storage.setItem('userinfo', this.info, 10)
-                this.$methods.showToast('设置成功')
+                this.$ui.showToast('设置成功')
             },
             getStorage() {
                 let info = this.$storage.getItem('userinfo')
-                this.$methods.showToast(JSON.stringify(info) || '数据为空')
+                this.$ui.showToast(info ? JSON.stringify(info) : '数据为空')
             }
         }
     }

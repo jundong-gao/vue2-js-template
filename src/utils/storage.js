@@ -14,14 +14,14 @@ class Storage {
      * @param expire 过期时间 以秒为单位
      */
     setItem(key, data, expire) {
-        expire = isNaN(expire) ?  24 * 60 * 60 * 1000 : parseInt(expire)
+        expire = isNaN(expire) ?  46800 : parseInt(expire)
         if(!key) throw new Error('set key is required')
         window.localStorage.setItem(key, JSON.stringify(data))
         if(expire)  window.localStorage.setItem(`${key}__expire__`, Date.now() + expire * 1000)
     }
     getItem(key) {
         if(!key) throw new Error('get key is required')
-        let expire = window.localStorage.getItem(`${key}__expire__`) || Date.now() + 24 * 60 * 60 * 1000
+        let expire = window.localStorage.getItem(`${key}__expire__`) || Date.now() + 46800000
         if(expire < Date.now()) return this.removeItem(key)
         let data = window.localStorage.getItem(key) || ''
         if(!data) return null

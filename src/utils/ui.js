@@ -40,8 +40,21 @@ class Ui {
      * @param self
      */
     resetData(key, self){
-        if(!key) return Object.assign(self.$data[key], self.$options.data()[key])
-        return Object.assign(self.$data, self.$options.data())
+        if(!key) return Object.assign(self.$data, self.$options.data())
+
+        let _key_arr = key.split('.')
+        if(_key_arr.length === 1)  return Object.assign(self.$data[key], self.$options.data()[key])
+
+        let result = this.getData(self.$data, _key_arr)
+        if(typeof result == 'object' || typeof result == 'function') return Object.assign(this.getData(self.$data, _key_arr), this.getData(self.$options.data(), _key_arr))
+        console.warn('reset-log::::::::::::::::', '数据为基本数据类型，请手动重置')
+    }
+    getData(data, arr){
+        let val = data
+        arr.forEach(item => {
+            val = val[item]
+        })
+        return val
     }
 }
 

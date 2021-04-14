@@ -25,7 +25,7 @@
 │   ├── router
 │   │   └── methods.js
 │   ├── store
-│   │   └── methods.js
+│   │   └── index.js
 │   ├── utils // 工具类
 │   │   ├── methods.js
 │   │   ├── ui.js
