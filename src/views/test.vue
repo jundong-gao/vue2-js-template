@@ -16,10 +16,14 @@
         {{info}}
         {{info2}}
 
-        <v-echarts style="width: 100px; height: 100px;"></v-echarts>
-        <v-echarts style="width: 100px; height: 100px;"></v-echarts>
+        <qz-echarts style="width: 100px; height: 100px;"></qz-echarts>
+        <qz-echarts style="width: 100px; height: 100px;"></qz-echarts>
 
-        <v-modal>asdasdsa</v-modal>
+        <el-button @click="showModal = true">modal</el-button>
+
+        <qz-modal v-model="showModal" title="asdasdsd" width="200px" @confirm="confirmModal">
+            是否要删除？
+        </qz-modal>
     </div>
 </template>
 
@@ -27,6 +31,7 @@
     export default {
         data() {
             return {
+                showModal: false,
                 info: {
                     name: '高俊东',
                     age: 18,
@@ -61,6 +66,10 @@
             getStorage() {
                 let info = this.$storage.getItem('userinfo')
                 this.$ui.showToast(info ? JSON.stringify(info) : '数据为空')
+            },
+            confirmModal(e){
+                console.log('e::::::::::::::::', e)
+                this.$ui.showToast(e, 'info')
             }
         }
     }

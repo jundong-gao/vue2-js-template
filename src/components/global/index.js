@@ -7,9 +7,8 @@
 import Vue from 'vue'
 let files = require.context('./', false, /\.vue$/)
 
-console.log('files::::::::::::::::', files)
 
 files.keys().forEach(file => {
    let module = files(file).default
-    Vue.component(`v-${module.name}`, module)
+    Vue.component(`qz-${module.name}`, module)
 })

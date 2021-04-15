@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import '@/utils/rem'
 import '@/assets/style/base.css'
+import '@/assets/style/flex.css'
 import elementUI from 'element-ui'
 Vue.use(elementUI)
 import 'element-ui/lib/theme-chalk/index.css'
@@ -17,6 +18,7 @@ window.$ui = Vue.prototype.$ui = new Ui(Vue)
 window.$storage = Vue.prototype.$storage = new Storage()
 window.$methods = Vue.prototype.$methods = methods
 window.$http = Vue.prototype.$http = http
+
 
 
 Vue.config.productionTip = false

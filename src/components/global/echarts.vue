@@ -5,7 +5,7 @@
  * Time: 9:55 AM
 -->
 <template>
-    <div class="echarts" :ref="ref_id"></div>
+    <div class="qz-echarts" :ref="ref_id"></div>
 </template>
 
 <script>
@@ -46,5 +46,5 @@
 </script>
 
 <style scoped lang="scss">
-    .echarts{width: 100%; height: 100%;}
+    .qz-echarts{width: 100%; height: 100%;}
 </style>
