@@ -7,5 +7,6 @@
 
 exports.api = {
     gao1: 'xxxxx/gao1',
-    gao2: 'http://mock.gaojundong.com/info/userinfo'
+    gao2: 'http://mock.gaojundong.com/info/userinfo',
+    sleep: 'http://mock.gaojundong.com/random/sleep',
 }

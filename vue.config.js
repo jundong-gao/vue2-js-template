@@ -52,5 +52,9 @@ module.exports = {
             //     return assetFilename.endsWith('.js')
             // }
         }
+    },
+    devServer: {
+        host: '0.0.0.0',
+        open: true
     }
 }

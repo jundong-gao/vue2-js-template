@@ -15,6 +15,11 @@
         <el-input v-model.trim="info2.address"></el-input>
         {{info}}
         {{info2}}
+
+        <v-echarts style="width: 100px; height: 100px;"></v-echarts>
+        <v-echarts style="width: 100px; height: 100px;"></v-echarts>
+
+        <v-modal>asdasdsa</v-modal>
     </div>
 </template>
 
@@ -35,21 +40,15 @@
                 }
             }
         },
-        mounted() {
+        async mounted() {
 
-            $http.test.test2({
-                age: 18,
-                name:'张三'
-            })
-
+            let b = await $http.test.test2(this.info)
             this.$http.gao.gao1().then(res => {
-                console.log('gao1::::::::::::::::', res)
+                // console.log('gao1::::::::::::::::', res)
             }).catch(e => {
-                console.log('e::::::::::::::::', e)
+                console.log('eeeeeeeee::::::::::::::::', e)
             })
-            this.$http.gao.gao2().then(res => {
-                console.log('gao2::::::::::::::::', res)
-            })
+            let gao2 = await this.$http.gao.gao2()
         },
         methods: {
             resetData() {

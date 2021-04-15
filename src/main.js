@@ -11,6 +11,7 @@ import Storage from '@/utils/storage'
 import Ui from '@/utils/ui'
 import * as methods from '@/utils/methods'
 import http from '@/api/index'
+import '@comps/global/index'
 
 window.$ui = Vue.prototype.$ui = new Ui(Vue)
 window.$storage = Vue.prototype.$storage = new Storage()
