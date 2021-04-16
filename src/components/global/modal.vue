@@ -6,7 +6,7 @@
 -->
 <template>
     <transition name="fade">
-        <div class="qz-modal flex-jac" v-show="value" @click.self="confirm('cancel')">
+        <div class="qz-modal" v-show="value" @click.self="confirm('cancel')">
             <div class="qz-modal-content" :style="contentStyle">
                 <div class="qz-modal-content-title">
                     <slot name="title">{{title}}</slot>
@@ -63,7 +63,10 @@
         watch: {
             value: {
                 handler: function (val) {
-                    document.body.style.overflow = val ? 'hidden' : ''
+                    if(val)  return document.body.style.overflow = 'hidden'
+                    setTimeout(() => {
+                        document.body.style.overflow = ''
+                    }, 300)
                 }
             }
         },
@@ -77,8 +80,8 @@
 </script>
 
 <style scoped lang="scss">
-    .qz-modal{position: fixed; z-index: 1000; padding-bottom: 300px; overflow: auto; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, .5);
-        &-content{background-color: #fff; z-index: 1001; transition: all .5s ease-in-out;
+    .qz-modal{position: fixed; z-index: 1000; padding-bottom: 300px; overflow: auto; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, .5); padding-top: 200px;
+        &-content{background-color: #fff; z-index: 1001; transition: all .3s ease-out; position: relative; margin: 0 auto;
             &-title{padding: 10px; position: relative; font-size: 16px; font-weight: bolder;
                 &-icon{position: absolute; color: red; right: 10px; cursor: pointer; font-size: 20px; top: 50%; transform: translateY(-50%);}
             }
@@ -91,13 +94,8 @@
     }
 
 
-    .fade-enter-active, .fade-leave-active {
-        transition: all .5s ease-in-out;
-    }
-    .fade-enter, .fade-leave-to {
-        opacity: 0;
-        .qz-modal-content{
-            margin-top: -100px;
-        }
+    .fade-enter-active, .fade-leave-active {transition: all .3s ease-out;}
+    .fade-enter, .fade-leave-to {opacity: 0;
+        .qz-modal-content{margin-top: -50px;}
     }
 </style>

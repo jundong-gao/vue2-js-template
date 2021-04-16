@@ -5,6 +5,7 @@
  * Time: 1:31 PM
  */
 
+import { Message, Loading } from 'element-ui'
 
 
 class Ui {
@@ -14,11 +15,11 @@ class Ui {
         this.vue = vue
     }
 
-    showLoading(text = '') {
-        this.loadInstance = this.vue.prototype.$loading({
+    showLoading(text = '加载中') {
+        this.loadInstance = Loading.service({
             text,
             background: 'rgba(0,0,0,.8)',
-            lock: false
+            lock: true
         })
     }
 
@@ -27,7 +28,7 @@ class Ui {
     }
 
     showToast(content, type = 'success'){
-        this.vue.prototype.$message({
+        Message({
             type,
             duration: 2000,
             message: content

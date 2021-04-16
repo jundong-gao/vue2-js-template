@@ -9,6 +9,7 @@
         <el-button type="primary" @click="setStorage">setStorage（10秒）</el-button>
         <el-button type="primary" @click="getStorage">getStorage</el-button>
         <el-button type="primary" @click="resetData">resetData</el-button>
+        <el-button type="primary" @click="showLoading">showLoading</el-button>
         <el-input v-model.trim="info.name"></el-input>
         <el-input v-model.trim="info.age"></el-input>
         <el-input v-model.trim="info.company.code"></el-input>
@@ -47,6 +48,9 @@
             }
         },
         async mounted() {
+            setTimeout(() => {
+                this.$ui.hideLoading()
+            },2000)
 
             let b = await $http.test.test2(this.info)
             this.$http.gao.gao1().then(res => {
@@ -61,7 +65,12 @@
                 this.$qzConfirm('标题', '内容', res => {
                     $ui.showToast(res, 'info')
                 })
-
+            },
+            showLoading() {
+                this.$ui.showLoading()
+                setTimeout(() => {
+                    this.$ui.hideLoading()
+                }, 3000)
             },
             resetData() {
                 this.$ui.resetData('info.company.code', this)

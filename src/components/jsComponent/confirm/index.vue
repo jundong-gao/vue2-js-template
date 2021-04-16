@@ -6,15 +6,15 @@
 -->
 <template>
     <transition name="fade">
-        <div class="qz-mask flex-jac" v-show="show">
+        <div class="qz-mask" v-show="show" @click.self="confirm('cancel')">
             <div class="qz-content">
-                <div>{{title}}</div>
-                <div>{{content}}</div>
-                <div class="flex-jasc">
+                <div class="qz-content-title">{{title}}</div>
+                <div class="qz-content-desc">{{content}}</div>
+                <div class="flex-jasc qz-confirm-operation">
                     <div></div>
                     <div class="flex-aic">
-                        <div @click.stop="confirm('cancel')">取消</div>
-                        <div @click.stop="confirm('confirm')">确认</div>
+                        <div class="qz-confirm-btn cancel" @click.stop="confirm('cancel')">取消</div>
+                        <div class="qz-confirm-btn confirm" @click.stop="confirm('confirm')">确认</div>
                     </div>
                 </div>
             </div>
@@ -49,19 +49,25 @@
 </script>
 
 <style scoped lang="scss">
-    .qz-mask{position: fixed; left: 0; top: 0; z-index: 1000; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);}
-    .qz-content{width: 200px; background-color: #fff; transition: all .3s ease-out;}
-
-
-
-
-    .fade-enter-active, .fade-leave-active {
-        transition: all .3s ease-out;
+    .qz-mask{position: fixed; left: 0; top: 0; z-index: 1000; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); padding-top: 200px;}
+    .qz-content{width: 200px; background-color: #fff; transition: all .3s ease-out; margin: 0 auto;
+        &-title{font-size: 14px; font-weight: bolder; padding: 10px;}
+        &-desc{font-size: 14px; padding: 0 10px;}
     }
-    .fade-enter, .fade-leave-to {
-        opacity: 0;
-        .qz-content{
-            margin-top: -50px;
+    .qz-confirm-operation{ padding: 10px;
+        .qz-confirm-btn{ font-size: 14px; cursor: pointer;
+            &:last-child{margin-left: 10px;}
+            &.cancel{color: #bbbbbb;}
+            &.confirm{color: red;}
         }
+    }
+
+
+
+
+
+    .fade-enter-active, .fade-leave-active {transition: all .3s ease-out;}
+    .fade-enter, .fade-leave-to {opacity: 0;
+        .qz-content{margin-top: -50px;}
     }
 </style>
