@@ -20,6 +20,7 @@
         <qz-echarts style="width: 100px; height: 100px;"></qz-echarts>
 
         <el-button @click="showModal = true">modal</el-button>
+        <el-button @click="qzConfirm">$qzConfirm</el-button>
 
         <qz-modal v-model="showModal" title="asdasdsd" width="200px" @confirm="confirmModal">
             是否要删除？
@@ -56,6 +57,12 @@
             let gao2 = await this.$http.gao.gao2()
         },
         methods: {
+            qzConfirm() {
+                this.$qzConfirm('标题', '内容', res => {
+                    $ui.showToast(res, 'info')
+                })
+
+            },
             resetData() {
                 this.$ui.resetData('info.company.code', this)
             },
